@@ -1,0 +1,82 @@
+---
+title: "Exhibition of Function Outputs"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r include=FALSE}
+
+# Dataset used in the function
+data("iris")
+
+# Package required in the function
+library(tidyverse)
+
+# A function enters the iris dataset and a species
+# and returns the average sepal length of the selected species.
+# The first argument of the function should be the iris dataset.
+# The second argument of the function should be 
+# one of the species in the iris dataset.
+sepal_length_avg <- function(data, species) {
+  data_transformed <- data %>%
+    filter(Species == species) %>%
+    group_by(Species) %>%
+    summarise(sepal_length_avg = mean(Sepal.Length))
+  return(data_transformed)
+}
+
+```
+
+This document exhibits the outputs when specifying different species as the second argument in the function. The function only returns the average sepal length of the selected species.
+
+## The output when specify "virginica" as the second argument
+```{r }
+sepal_length_avg(iris, "virginica")
+
+```
+
+## The output when specify "setosa" as the second argument
+```{r }
+sepal_length_avg(iris, "setosa")
+
+```
+
+## The output when specify "versicolor" as the second argument
+```{r }
+sepal_length_avg(iris, "versicolor")
+
+```
+
+
+## Appendix: All code in this exercise
+```{r,warning=FALSE,message=FALSE,echo=TRUE,results='hide'}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Dataset used in the function
+data("iris")
+
+# Package required in the function
+library(tidyverse)
+
+# A function enters the iris dataset and a species
+# and returns the average sepal length of the selected species.
+# The first argument of the function should be the iris dataset.
+# The second argument of the function should be 
+# one of the species in the iris dataset.
+sepal_length_avg <- function(data, species) {
+  data_transformed <- data %>%
+    filter(Species == species) %>%
+    group_by(Species) %>%
+    summarise(sepal_length_avg = mean(Sepal.Length))
+  return(data_transformed)
+}
+
+sepal_length_avg(iris, "virginica")
+
+sepal_length_avg(iris, "setosa")
+
+sepal_length_avg(iris, "versicolor")
+```
